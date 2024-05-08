@@ -144,10 +144,12 @@
         <input type="checkbox" id="mtp_joint_right_5" name="mtp_joint_right_5" class="checkbox" data-x="30.5%" data-y="77%">
         </form> <!-- フォームの終了タグ -->
     </div> <!-- imageContainerの終了タグ -->
-        <div class="navigation-buttons">
-            <button type="button" onclick="window.history.back();">前へもどる</button>
-            <button type="submit" form="jointForm">次へすすむ</button>            
-        </div>
+        <div class="button-container">
+                <a href="{{ url_for('data_blueprint.handpicture') }}" class="button">写真入力画面に進む</a>
+                <br>
+                <a href="{{ url_for('data_blueprint.symptom') }}" class="button">症状入力画面に戻る</a>
+            </div>
+            <p>次は手の写真を入力します。</p>
         <script src="{{ url_for('data_blueprint.static', filename='js/script.js') }}"></script>
 </body>
 </html>

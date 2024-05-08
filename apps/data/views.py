@@ -81,13 +81,13 @@ def handpicture():
 def x_ray():
     if request.method == 'POST':
         # アップロードされたファイルを処理する
-        return redirect(url_for('data.result'))
+        return redirect(url_for('data.drresult'))
     return render_template('x_ray.html')
 
-@data_blueprint.route('/result', methods=['GET', 'POST'])
+@data_blueprint.route('/drresult', methods=['GET', 'POST'])
 #@login_required
 def result():
     user_id = current_user.id
     symptoms = Symptom.query.filter_by(user_id=user_id).first()
     # 結果を表示する
-    return render_template('result.html', symptoms=symptoms)
+    return render_template('drresult.html', symptoms=symptoms)

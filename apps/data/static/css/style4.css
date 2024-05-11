@@ -50,3 +50,35 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+/* 基本のボタンスタイル */
+.button {
+    
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(to bottom, #007BFF, #0056b3);
+    border: none;
+    border-radius: 5px;
+    text-decoration: solid;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 2px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left:20px;
+    margin-right:20px;
+}
+
+/* ホバー時の効果 */
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* ボタンをFlexboxで配置するための親要素 */
+.button-container {
+    display: flex;
+    justify-content: left; /* 中央揃え */
+    align-items: center;     /* 縦方向の中央揃え */
+    margin-top: 20px;
+}

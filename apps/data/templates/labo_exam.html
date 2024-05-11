@@ -34,9 +34,9 @@
                 <input type="number" id="anti-ccp" name="anti-ccp" min="0.01" step="0.01" required>U/ml
             </div>
         </div>
-        <div class="form-navigation">
-            <button type="button" onclick="window.history.back();">前へもどる</button>
-            <button type="submit">次へすすむ</button>
+        <div class="button-container">
+        <a href="{{ url_for('data_blueprint.handpicture') }}" class="button">前に戻る</a>
+        <a href="{{ url_for('data_blueprint.x_ray') }}" class="button">先に進む</a>
         </div>
     </form>
 </body>

@@ -58,12 +58,10 @@
                 </select>
             </div>
         </div>
-        <div class="form-navigation">
-            <button type="button" onclick="window.history.back();">前へもどる</button>
-            <button type="submit">次へすすむ</button>
+        <div class="button-container">
+            <a href="{{ url_for('data_blueprint.notice') }}" class="button">前に戻る</a>
+            <a href="{{ url_for('data_blueprint.joints_fig') }}" class="button">次に進む</a>
         </div>
-        <!--<input type="button" onclick="location.href='data.blueprint.notice.html'" value="説明同意画面に戻る">
-        <input type="button" onclick="location.href='data.blueprint.joints_fig.html'" value="関節症状を入力する">-->
     </form>
 </body>
 </html>

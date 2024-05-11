@@ -49,28 +49,6 @@ class Symptom(db.Model):
         if (current_month, current_day) < (self.birth_month, self.birth_day):
             age -= 1
         return age    
-    
-def joint_score(proximal_joints, distal_joints):
-    joint_score = 0  # 関節スコアの初期値を設定
-    # "distal_joints"が0のときの条件
-    if distal_joints == 0:
-        if proximal_joints == 0:
-            return 0
-        else:
-            return 1
-    # distal_jointsが0より大きい数のときの条件
-    else:
-        # proximal_joints + distal_jointsの合計が11以上の場合
-        if proximal_joints + distal_joints >= 11:
-            return 5
-        # proximal_joints + distal_jointsの合計が10未満の場合
-        elif proximal_joints + distal_joints < 10:
-        # distal_jointsが3以下の場合
-            if distal_joints <= 3:
-                return 2
-        # distal_jointsが4以上の場合
-            else:
-                return 3
 
 
 def immunology_score(rf, acpa):

@@ -41,7 +41,10 @@
         撮影した写真は、個人情報保護法に基づき、厳重に管理いたします。<br>
         撮影した写真を、第三者に提供することはありません。</p><br>
     <h2>これで入力は終了です。お疲れ様でした。</h2>
-    <input type="button" onclick="location.href='data.blueprint.labo_exam'" value="検査入力画面に戻る">
-    <input type="button" onclick="location.href='data.blueprint.drresult'" value="判定結果を見る">
+    <div class="button-container">
+        <a href="{{ url_for('data_blueprint.index') }}" class="button">ホームに戻る</a>
+        <a href="{{ url_for('data_blueprint.labo_exam') }}" class="button">検査入力画面に戻る</a>
+        <a href="{{ url_for('data_blueprint.joints_fig') }}" class="button">判定結果画面に戻る</a>
+    </div>
 </body>
 </html>

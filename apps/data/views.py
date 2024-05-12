@@ -3,6 +3,9 @@ from flask_login import login_required, current_user
 from .models import Symptom, JointData
 from .extensions import db
 import datetime
+import os
+from .models import HandData
+from PIL import Image
 
 data_blueprint = Blueprint('data_blueprint', __name__, template_folder='templates', static_folder='static')
 
@@ -15,8 +18,6 @@ def index():
         return render_template('index.html')
 
 @data_blueprint.route('/notice', methods=['GET', 'POST'])
-
-
 def notice():
     if request.method == 'POST':
         return redirect(url_for('data.symptom'))
@@ -178,8 +179,48 @@ def labo_exam():
 @data_blueprint.route('/handpicture', methods=['GET', 'POST'])
 #@login_required
 def handpicture():
-    if request.method == 'POST':
-        # アップロードされたファイルを処理する
+    if request.method == 'POST':# アップロードされたファイルを処理する
+        # 右手の写真をアップロードから取得
+        right_hand = request.files['right_hand']
+        # 左手の写真をアップロードから取得
+        left_hand = request.files['left_hand']
+
+        # 現在の日時を取得
+        now = datetime.now()
+        # 日時をファイル名に使用する形式に変換
+        dt_string = now.strftime("%Y%m%d_%H%M%S")
+
+        # 右手の写真のファイル名を変更
+        right_filename = f"{current_user.email}_{dt_string}_right.jpg"
+        # 右手の写真を保存するパス
+        right_path = os.path.join("apps/data/rt_hand", right_filename)
+        # 右手の写真を保存
+        right_hand.save(right_path)
+
+        # 左手の写真を左右反転
+        left_img = Image.open(left_hand)
+        left_img_flipped = left_img.transpose(Image.FLIP_LEFT_RIGHT)
+
+        # 左手の写真のファイル名を変更
+        left_filename = f"{current_user.email}_{dt_string}_left.jpg"
+        # 左手の写真を保存するパス
+        left_path = os.path.join("apps/data/lt_hand", left_filename)
+        # 左手の写真を保存
+        left_img_flipped.save(left_path)
+
+        # データベースに保存
+        hand_data = HandData(
+            user_id=current_user.id,
+            datetime=now,
+            right_hand_path=right_path,
+            left_hand_path=left_path
+        )
+        db.session.add(hand_data)
+        db.session.commit()
+
+        return redirect(url_for('data.x_ray'))
+
+    return render_template('handpicture.html')        
         return redirect(url_for('data.x_ray'))
     return render_template('handpicture.html')
 

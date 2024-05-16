@@ -6,14 +6,15 @@ from flask_migrate import Migrate
 from apps.auth.views import auth_blueprint, login_manager
 from apps.data.views import data_blueprint
 # from apps.dpl import dpl_blueprint  # 準備ができたらコメントを外す
+from apps.data.extensions import db, migrate
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object('apps.settings.Config')  # Configクラスから設定を読み込む
 
-    # データベースとマイグレーションの設定
-    db = SQLAlchemy(app)
-    migrate = Migrate(app, db)
+    # データベースとマイグレーションの設定（インポートされたインスタンスを使用）
+    db.init_app(app)
+    migrate.init_app(app, db)
 
     # メール機能の設定
     mail = Mail(app)

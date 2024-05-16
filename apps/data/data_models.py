@@ -9,6 +9,8 @@ class Labo(db.Model):
     esr = db.Column(db.Integer, nullable=False)
     rf = db.Column(db.Float, nullable=False)
     acpa = db.Column(db.Float, nullable=False)
+    immunology_score = db.Column(db.Integer, nullable=False)
+    inflammation_score = db.Column(db.Integer, nullable=False)
 
 
 def immunology_score(rf, acpa):

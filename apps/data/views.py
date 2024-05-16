@@ -179,7 +179,7 @@ def labo_exam():
         esr = int(request.form['esr'])
         rf = float(request.form['rf'])
         acpa = float(request.form['acpa'])
-
+    
         # データベースに保存
         labo_data = Labo(
             user_id=current_user.id,

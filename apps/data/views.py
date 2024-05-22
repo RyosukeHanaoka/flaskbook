@@ -55,9 +55,36 @@ def symptom():
 
     return render_template('symptom.html', years=years, months=months, days=days, stiffness_durations=stiffness_durations)
 
-@data_blueprint.route('/joints_fig', methods=['GET', 'POST'])
+@data_blueprint.route('/righthand', methods=['GET', 'POST'])
 #@login_required
-def joints_fig():
+def righthand():
+    if request.method == 'POST':
+        data=request.form
+        joint_entry = JointData(
+            dip_joint_right_2=int(data.get('dip_joint_right_2', 0)),
+            dip_joint_right_3=int(data.get('dip_joint_right_3', 0)),
+            dip_joint_right_4=int(data.get('dip_joint_right_4', 0)),
+            dip_joint_right_5=int(data.get('dip_joint_right_5', 0)),
+            thumb_ip_joint_right=int(data.get('thumb_ip_joint_right', 0)),
+            pip_joint_right_2=int(data.get('pip_joint_right_2', 0)),
+            pip_joint_right_3=int(data.get('pip_joint_right_3', 0)),
+            pip_joint_right_4=int(data.get('pip_joint_right_4', 0)),
+            pip_joint_right_5=int(data.get('pip_joint_right_5', 0)),
+            mp_joint_right_1=int(data.get('mp_joint_right_1', 0)),
+            mp_joint_right_2=int(data.get('mp_joint_right_2', 0)),
+            mp_joint_right_3=int(data.get('mp_joint_right_3', 0)),
+            mp_joint_right_4=int(data.get('mp_joint_right_4', 0)),
+            mp_joint_right_5=int(data.get('mp_joint_right_5', 0)),
+        )
+        db.session.add(joint_entry)
+        db.session.commit()
+
+        return redirect(url_for('data_blueprint.lefthand'))
+    return render_template('righthand.html')
+
+@data_blueprint.route('/lefthand', methods=['GET', 'POST'])
+#@login_required
+def lefthand():
     if request.method == 'POST':
         data=request.form
         joint_entry = JointData(
@@ -65,30 +92,29 @@ def joints_fig():
             dip_joint_left_3=int(data.get('dip_joint_left_3', 0)),
             dip_joint_left_4=int(data.get('dip_joint_left_4', 0)),
             dip_joint_left_5=int(data.get('dip_joint_left_5', 0)),
-            dip_joint_right_2=int(data.get('dip_joint_right_2', 0)),
-            dip_joint_right_3=int(data.get('dip_joint_right_3', 0)),
-            dip_joint_right_4=int(data.get('dip_joint_right_4', 0)),
-            dip_joint_right_5=int(data.get('dip_joint_right_5', 0)),
             thumb_ip_joint_left=int(data.get('thumb_ip_joint_left', 0)),
-            thumb_ip_joint_right=int(data.get('thumb_ip_joint_right', 0)),
             pip_joint_left_2=int(data.get('pip_joint_left_2', 0)),
             pip_joint_left_3=int(data.get('pip_joint_left_3', 0)),
             pip_joint_left_4=int(data.get('pip_joint_left_4', 0)),
             pip_joint_left_5=int(data.get('pip_joint_left_5', 0)),
-            pip_joint_right_2=int(data.get('pip_joint_right_2', 0)),
-            pip_joint_right_3=int(data.get('pip_joint_right_3', 0)),
-            pip_joint_right_4=int(data.get('pip_joint_right_4', 0)),
-            pip_joint_right_5=int(data.get('pip_joint_right_5', 0)),
             mp_joint_left_1=int(data.get('mp_joint_left_1', 0)),
             mp_joint_left_2=int(data.get('mp_joint_left_2', 0)),
             mp_joint_left_3=int(data.get('mp_joint_left_3', 0)),
             mp_joint_left_4=int(data.get('mp_joint_left_4', 0)),
             mp_joint_left_5=int(data.get('mp_joint_left_5', 0)),
-            mp_joint_right_1=int(data.get('mp_joint_right_1', 0)),
-            mp_joint_right_2=int(data.get('mp_joint_right_2', 0)),
-            mp_joint_right_3=int(data.get('mp_joint_right_3', 0)),
-            mp_joint_right_4=int(data.get('mp_joint_right_4', 0)),
-            mp_joint_right_5=int(data.get('mp_joint_right_5', 0)),
+        )
+        db.session.add(joint_entry)
+        db.session.commit()
+
+        return redirect(url_for('data_blueprint.body'))
+    return render_template('lefthand.html')
+
+@data_blueprint.route('/body', methods=['GET', 'POST'])
+#@login_required
+def body():
+    if request.method == 'POST':
+        data=request.form
+        joint_entry = JointData(
             wrist_joint_hand_left=int(data.get('wrist_joint_hand_left', 0)),
             wrist_joint_hand_right=int(data.get('wrist_joint_hand_right', 0)),
             elbow_joint_left=int(data.get('elbow_joint_left', 0)),
@@ -101,6 +127,19 @@ def joints_fig():
             knee_joint_right=int(data.get('knee_joint_right', 0)),
             ankle_joint_left=int(data.get('ankle_joint_left', 0)),
             ankle_joint_right=int(data.get('ankle_joint_right', 0)),
+        )
+        db.session.add(joint_entry)
+        db.session.commit()
+
+        return redirect(url_for('data_blueprint.foot'))
+    return render_template('body.html')
+
+@data_blueprint.route('/foot', methods=['GET', 'POST'])
+#@login_required
+def foot():
+    if request.method == 'POST':
+        data=request.form
+        joint_entry = JointData(
             mtp_joint_left_1=int(data.get('mtp_joint_left_1', 0)),
             mtp_joint_left_2=int(data.get('mtp_joint_left_2', 0)),
             mtp_joint_left_3=int(data.get('mtp_joint_left_3', 0)),
@@ -118,7 +157,7 @@ def joints_fig():
         db.session.commit()
 
         return redirect(url_for('data_blueprint.labo_exam'))
-    return render_template('joints_fig.html')
+    return render_template('foot.html')
 
         # distal_joints と proximal_joints の計算と保存
 def distal_joints(joint_entry):

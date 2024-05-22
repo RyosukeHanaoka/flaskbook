@@ -39,8 +39,8 @@ form-section{
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
-    color: white;
-    background: linear-gradient(to bottom, #007BFF, #0056b3);
+    color: rgb(30, 30, 30);
+    background: linear-gradient(to bottom, #efeeee, #d3d4d5);
     border: none;
     border-radius: 5px;
     text-decoration: solid;
@@ -54,7 +54,7 @@ form-section{
 
 /* ホバー時の効果 */
 .button:hover {
-    background-color: #0056b3;
+    background-color: #4d4e4e;
 }
 
 /* ボタンをFlexboxで配置するための親要素 */

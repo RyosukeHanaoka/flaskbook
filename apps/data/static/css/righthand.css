@@ -51,7 +51,8 @@ h2, p {
     max-height: 80vh;
     max-width: 142.22vh;
     position: relative;
-    background-image: url('distribution.jpg');
+    
+    background-image: url('righthand.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

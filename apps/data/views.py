@@ -46,7 +46,7 @@ def symptom():
         db.session.add(user)
         db.session.commit()
         flash('登録が完了しました！', 'success')
-        return redirect(url_for('data.joints_fig'))
+        return redirect(url_for('data.righthand'))
 
     years = range(1920, datetime.date.today().year + 1)
     months = range(1, 13)

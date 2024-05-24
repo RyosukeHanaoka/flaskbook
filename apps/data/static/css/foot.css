@@ -39,14 +39,14 @@ h2, p {
 /* ボタンをFlexboxで配置するための親要素 */
 .button-container {
     display: flex;
-    justify-content: left; /* 中央揃え */
+    justify-content: center; /* 中央揃え */
     align-items: center;     /* 縦方向の中央揃え */
     margin-top: 20px;
 }
 
 /* 画像コンテナのスタイリング */
 #imageContainer {
-    width: 90vw; /* 幅を調整 */
+    width: 90vh; /* 幅を調整 */
     height: 90vh; /* アスペクト比を維持 */
     max-height: 80vh;
     max-width: 142.22vh;
@@ -61,7 +61,7 @@ h2, p {
 /* チェックボックスのスタイリング */
 .checkbox {
     position: absolute; /* 絶対位置 */
-    transform: translate(-40%, -50%); /* オフセットの修正 */
+    transform: translate(-50%, -50%); /* オフセットの修正 */
     z-index: 1; /* チェックボックスが前面に来るように */
 }
 
@@ -69,6 +69,7 @@ h2, p {
 @media (max-width: 700px) {
     #imageContainer {
         width: 100vw; /* モバイルでは幅を最大に */
+        max-height:100vw;
     }
 }
 

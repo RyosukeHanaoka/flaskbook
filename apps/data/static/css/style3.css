@@ -15,7 +15,7 @@ p{
 }
 
 form-section{
-    display:grid
+    display:flex
     grid-column 3;
     grid-row: 1;
     grid-gap: 10px;
@@ -26,7 +26,7 @@ form-section{
     margin-bottom: 60px;
 }
 .form-group label {
-    display: block;
+    display: flex;
     font-size: 1.2em;
     height: 30px;
     margin-top: 20px;

@@ -156,7 +156,7 @@ def foot():
         db.session.add(joint_entry)
         db.session.commit()
 
-        return redirect(url_for('data_blueprint.labo_exam'))
+        return redirect(url_for('data_blueprint.handpicture'))
     return render_template('foot.html')
 
         # distal_joints と proximal_joints の計算と保存
@@ -231,7 +231,7 @@ def labo_exam():
         db.session.add(labo_data)
         db.session.commit()
 
-        return redirect(url_for('data.handpicture'))
+        return redirect(url_for('data_blueprint.x_ray'))
 
     return render_template('labo_exam.html') 
 
@@ -277,7 +277,7 @@ def handpicture():
         db.session.add(hand_data)
         db.session.commit()
 
-        return redirect(url_for('data.x_ray'))
+        return redirect(url_for('data_blueprint.x_ray'))
 
     return render_template('handpicture.html')        
 
@@ -339,7 +339,7 @@ def x_ray():
                 left_path = os.path.join(save_folder, left_filename)
                 left_dicom.save(left_path)
 
-        return redirect(url_for('data.drresult'))
+        return redirect(url_for('data_blueprint.drresult'))
 
     return render_template('x_ray.html')
 

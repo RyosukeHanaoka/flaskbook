@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, abort, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from .joint_models import JointData
 from .extensions import db
@@ -239,6 +239,11 @@ def labo_exam():
 #@login_required
 def handpicture():
     if request.method == 'POST':# アップロードされたファイルを処理する
+        if 'right_hand' not in request.files:
+            abort(400, description="Missing 'right_hand' file in request")
+        if 'left_hand' not in request.files:
+            abort(400, description="Missing 'left_hand' file in request")
+
         # 右手の写真をアップロードから取得
         right_hand = request.files['right_hand']
         # 左手の写真をアップロードから取得
@@ -252,7 +257,7 @@ def handpicture():
         # 右手の写真のファイル名を変更
         right_filename = f"{current_user.email}_{dt_string}_right.jpg"
         # 右手の写真を保存するパス
-        right_path = os.path.join("apps/data/rt_hand", right_filename)
+        right_path = os.path.join("apps/data/right_hand", right_filename)
         # 右手の写真を保存
         right_hand.save(right_path)
 
@@ -263,7 +268,7 @@ def handpicture():
         # 左手の写真のファイル名を変更
         left_filename = f"{current_user.email}_{dt_string}_left.jpg"
         # 左手の写真を保存するパス
-        left_path = os.path.join("apps/data/lt_hand", left_filename)
+        left_path = os.path.join("apps/data/left_hand", left_filename)
         # 左手の写真を保存
         left_img_flipped.save(left_path)
 

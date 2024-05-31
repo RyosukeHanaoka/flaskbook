@@ -53,7 +53,7 @@ def symptom():
     days = range(1, 32)
     stiffness_durations = [0, 5, 10, 15, 20, 30, 40, 50, 60, 120]
 
-    return render_template('symptom.html', years=years, months=months, days=days, stiffness_durations=stiffness_durations)
+    return render_template('symptom.html' , years=years, months=months, days=days, stiffness_durations=stiffness_durations)
 
 @data_blueprint.route('/righthand', methods=['GET', 'POST'])
 #@login_required

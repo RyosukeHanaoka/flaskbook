@@ -7,6 +7,7 @@
     <title>フォーム画面</title>
 </head>
 <body>
+    <h1>以下の質問にお答えください</h1>
     <form id="healthsurveyform" action="{{ url_for('data_blueprint.symptom') }}" method="post">
         <div class="form-section">
             <div class="form-group">
@@ -30,8 +31,9 @@
             </div>
         </div>
         <div class="form-section">
+            <p>朝起きてからしばらくの間、痛みのある関節が思うように動かせないことを「朝のこわばり」といいます。</p>
             <div class="form-group">
-                <label>朝起きた時に関節がこわばりますか？</label>
+                <label>朝のこわばりはありますか？</label>
                 <input type="radio" id="yes" name="morningstiffness" value="yes">
                 <label for="yes">はい</label>
                 <input type="radio" id="no" name="morningstiffness" value="no">
@@ -40,7 +42,7 @@
         </div>
         <div class="form-section">
             <div class="form-group">
-                <label for="morningstiffnessduration">朝のこわばりの持続時間はどれくらいですか？</label>
+                <label for="morningstiffnessduration">朝のこわばりは何分くらい続きますか？</label>
                 <select id="morningstiffnessduration" name="morningstiffnessduration">
                     {% for duration in stiffness_durations %}
                     <option value="{{ duration }}">{{ duration }}分</option>
@@ -50,7 +52,7 @@
         </div>
         <div class="form-section">
             <div class="form-group">
-                <label for="painlevel">痛みがない状態を0、最も痛い状態を100とした場合、現在の痛みはどの程度ですか？</label>
+                <label for="painlevel">痛みがない状態を0、最も痛い状態を100とすると、今の痛みはどのくらいですか？</label>
                 <select id="painlevel" name="painlevel">
                     {% for level in range(0, 101, 10) %}
                     <option value="{{ level }}">{{ level }}</option>
@@ -58,10 +60,12 @@
                 </select>
             </div>
         </div>
+        <p>出来上がったら、「次へすすむ」を押してください。</p>
         <div class="button-container">
             <a href="{{ url_for('data_blueprint.notice') }}" class="button">前に戻る</a>
-            <a href="{{ url_for('data_blueprint.joints_fig') }}" class="button">次に進む</a>
+            <a href="{{ url_for('data_blueprint.righthand') }}" class="button">次に進む</a>
         </div>
+        <p>前の画面にもどるときは、「前へもどる」を押してください。</p>
     </form>
 </body>
 </html>
